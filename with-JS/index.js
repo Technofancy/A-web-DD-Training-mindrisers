@@ -21,7 +21,9 @@ function statusCheck(index) {
     };
 };
 
-for (let count=0; count<todos.length; count++) {
+console.log("Length of todo array : ",todos.length);
+
+for (let count=0; count<=(todos.length-1); count++) {
     console.log(statusCheck(count));
 };
 
