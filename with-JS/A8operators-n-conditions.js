@@ -19,11 +19,25 @@ Comparrision Operator
 <= Less than and equals to
 
 logical operators :-
-AND
-OR
-NOT
-
+OR ||
+AND &&
+NOT !
 */
+let Student = {
+    name: "Ram",
+    paidStatus: true,
+    hasScholarship: false,
+    fulfillAttendence: true,
+};
+
+// Object destructuring
+let{fulfillAttendence, hasScholarship, paidStatus} = Student;
+
+if ((paidStatus || hasScholarship) && fulfillAttendence) {
+    console.log(`${Student.name} can give exam.`);
+} else {
+    console.log(`${Student.name} cannot give exam.`);
+}
 
 // Conditional statements (if else)
 
@@ -81,6 +95,9 @@ if (willRain) {
         console.log("No need of an umbrella.")
     };
 };
+
+
+
 
 let student = {
     name: "Ram",
