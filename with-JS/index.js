@@ -1,30 +1,51 @@
-const nepaliNames = ["Sujan", "Bikram", "Surya", "Bhuwan", "Mohan"];
-for (let i = 0; i < nepaliNames.length; i++) {
-    const element = nepaliNames[i];
-    console.log(`${element} - ${i}`);
+let numbers = [1, 2, 3];
+
+// Doubling array with for-loop;
+let newNumbers = [];
+for (let idx = 0; idx < numbers.length; idx++) {
+    newNumbers.push(2*numbers[idx]);
 }
+console.log(newNumbers)
 
-const printElement = (element) => {
-    console.log(element)
-}
 
-nepaliNames.forEach(printElement, );
-
-let numbers = [1, 2, 3, 4, 5];
-numbers.forEach((element, index) => {
-    console.log("Element : ", element, "Index : ", index);
+// Doubling array with forEach array-function;
+let newArr = [];
+numbers.forEach( (el) => {
+    newArr.push(2*el);
 })
+console.log(newArr);
 
-const showPopUp = () => {
-    console.log("showPopUp");
-    return undefined;
-}
+// with map
+let newArray = numbers.map((n) => { return 3*n});
+console.log(newArray);
 
-setTimeOut(showPopUp(), 2000);
 
-// Anonymus function
-setTimeout(() => {
-    console.log("Second popUp");
-}, 3000);
 
-// research  : array-function => forEach, map, filter, find
+// Create fake database :-
+const nepaliNames = ["Aarav", "Aarya", "Aasha", "Anisha"];
+let dummyDatas = nepaliNames.map ( (el, idx) => {
+    return {
+        name: el,
+        email: `${el}${idx}@gmail.com`,
+        password: `${el}$-${idx+1}`
+    }
+})
+console.log(dummyDatas);
+
+
+
+const wholeNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// Collect even numbers with filter :-
+const evenNum = wholeNumber.filter((el) => {
+    return el % 2 == 0;
+})
+console.log(evenNum);
+
+
+
+// Collect odd Numbers
+const oddNum = wholeNumber.filter((el) => {
+    return el % 2 != 0;
+})
+console.log(oddNum);
