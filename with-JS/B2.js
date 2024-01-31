@@ -28,19 +28,14 @@ let todos = [
 
 
 let completedTodos = [];
-for (let index = 0; index < todos.length; index++) {
-        if (todos[index].status == "completed") {
-        completedTodos.push(todos[index]);
-    }
-};
-console.log("compltedTodos", completedTodos);
-
-
 let pendingTodos = [];
 for (let index = 0; index < todos.length; index++) {
     let ourTodos = todos[index].status;
-        if (ourTodos == "pending") {
+        if (ourTodos == "completed") {
+        completedTodos.push(todos[index]);
+    } else {
         pendingTodos.push(todos[index]);
     }
 };
+console.log("compltedTodos", completedTodos);
 console.log("pendingTodos", pendingTodos);
