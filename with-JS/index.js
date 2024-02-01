@@ -1,51 +1,40 @@
-let numbers = [1, 2, 3];
+// Asynchronous function : API (Application Programming Interface) :-
 
-// Doubling array with for-loop;
-let newNumbers = [];
-for (let idx = 0; idx < numbers.length; idx++) {
-    newNumbers.push(2*numbers[idx]);
+const sum = (input1, input2) => input1+input2;
+
+setTimeout(() => {
+    console.log("API data...")
+},2000);
+// Asynchronous i.e. don't disturb codes after this
+
+for (let idx = 0; idx < 101; idx++) {
+    console.log("index", idx);
 }
-console.log(newNumbers)
 
 
-// Doubling array with forEach array-function;
-let newArr = [];
-numbers.forEach( (el) => {
-    newArr.push(2*el);
+// try catch :-
+try {
+    let a = b + c;
+} catch(errored) {
+    console.log("error", errored);
+}
+
+
+// promise :-
+let promise1 = new Promise((resolve, regect) => {
+
+    setTimeout(() => {
+        resolve("User data fetched");
+    }, 500);
+
+    // regect("Server error");
 })
-console.log(newArr);
 
-// with map
-let newArray = numbers.map((n) => { return 3*n});
-console.log(newArray);
-
-
-
-// Create fake database :-
-const nepaliNames = ["Aarav", "Aarya", "Aasha", "Anisha"];
-let dummyDatas = nepaliNames.map ( (el, idx) => {
-    return {
-        name: el,
-        email: `${el}${idx}@gmail.com`,
-        password: `${el}$-${idx+1}`
-    }
+console.log(promise1);
+promise1.then ((Response) => {
+    console.log("response", response);
+}).catch (err => {
+    console.log("err", console.err);
 })
-console.log(dummyDatas);
 
-
-
-const wholeNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-// Collect even numbers with filter :-
-const evenNum = wholeNumber.filter((el) => {
-    return el % 2 == 0;
-})
-console.log(evenNum);
-
-
-
-// Collect odd Numbers
-const oddNum = wholeNumber.filter((el) => {
-    return el % 2 != 0;
-})
-console.log(oddNum);
+console.log(sum(1, 2));
