@@ -7,7 +7,7 @@ setTimeout(() => {
 },2000);
 // Asynchronous i.e. don't disturb codes after this
 
-for (let idx = 0; idx < 101; idx++) {
+for (let idx = 0; idx < 11; idx++) {
     console.log("index", idx);
 }
 
