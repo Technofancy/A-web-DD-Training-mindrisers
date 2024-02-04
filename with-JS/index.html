@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        body {
-            background-color: aqua;
-        }
-        h1 {
-            padding: 0;
-            font-size: 72px;
-            text-align: center;
-            color: red;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
 </head>
 <body>
-    <h1>Testing JavaScript</h1>
 
-    <!-- <script src="./A1variable.js"></script> -->
-    <!-- <script src="./A2array.js"></script> -->
-    <script src="./index.js"></script>
+  // HTML form to add new todos
+  <form id="todo-form">
+    <label for="input-title">New Todo:</label>
+    <input type="text" id="input-title" />
+    <button onclick="addTodo(event)">Add Todo</button>
+  </form>
+
+  // Display the list of todos
+  <ul id="todos-list"></ul>
+
+  <script>
+    // Initial array of todos
+    let todosArr = ["HTML", "CSS", "JS", "React"];
+
+    // Function to add a new todo
+    function addTodo(event) {
+      event.preventDefault();
+
+      let input = document.getElementById("input-title").value;
+      console.log("Added new todo:", input);
+
+      // Add the new todo to the array
+      todosArr.push(input);
+
+      // Update the list of todos
+      updateTodoList();
+    }
+
+    // Function to delete a todo
+    function delInput(index) {
+      todosArr.splice(index, 1); // Remove specific todo
+      console.log("Deleted todo at index:", index);
+
+      // Update the list of todos
+      updateTodoList();
+    }
+
+    // Function to update the list of todos
+    function updateTodoList() {
+      let outputList = "";
+      todosArr.forEach((input, index) => {
+        outputList += `<li>${input} <button onclick="delInput(${index})">Del</button></li>`;
+      });
+
+      document.getElementById("todos-list").innerHTML = outputList;
+    }
+
+    // Initial rendering of the todo list
+    updateTodoList();
+  </script>
+
 </body>
 </html>

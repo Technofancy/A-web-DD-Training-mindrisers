@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: aqua;
+        }
+        h1 {
+            padding: 0;
+            font-size: 45px;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form onsubmit="addTodo(event)">
+        <input required id="input-title" type="text" placeholder="Type title here">
+        <Button> + Add </Button>
+    </form>
+
+    <hr>
+
+    <ul id="todos-list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+    </ul>
+
+
+
+    <script src="./index.js"></script>
+</body>
+</html>
