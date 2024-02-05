@@ -1,50 +1,38 @@
 // DOM Manupulation
-// alert("Testing JavaScript");
 
-let todosArr = ["HTML", "CSS", "JS"];
+let todosArray = ["HTML", "CSS", "JS"];
 
 function addTodo(event) {
   event.preventDefault();
 
   let input = document.getElementById("input-title").value;
-  console.log("Added new todo.", input);
-  todosArr.push(input);
+  todosArray.push(input);
+  console.log("Addedtitle:", input);
 
-  converTodosToList();
+  inListFromTodoList()
+}
+
+addTodo();
+
+function deleteTitle(index) {
+  todosArray.splice(index, 1);
+  console.log("Deleted title at index :", index);
+
+  inListFromTodoList()
 }
 
 
+function inListFromTodoList() {
+  let output = "";
+  todosArray.forEach((elInput, index) => {
+    output += `<li>${elInput} <button onclick="deleteTitle(${index})"> Del </button> </li>`
+  });
 
-function delInput(index) {
-
-  // todosArr.splice(index, 1); // Remove specific input-list.
-
-  // OR 2nd-ly
-  // todosArr.filter((el, idx) => idx != index);
-
-  // OR 3rd-ly
-  todosArr = todosArr.filter((el, idx) => idx != index);
-
-  converTodosToList();
-}
-
-
-
-function converTodosToList(){
-
-  let outputList = "";
-
-  todosArr.forEach = (input, index) => {
-    outputList += `<li>${input} <button onclick="delInput(${index})">Del</button> </li>`;
-  };
-
-      // console.log("Todo at index:", index);
-
-  document.getElementById("todos-list").innerHTML = outputList;
+  document.getElementById("todos-list").innerHTML = output;
 }
 
 
 // Research :-
-// Local storage in browser.
 // DOM - shopping list from task folder
+// Local storage in browser.
 // postman API download for ubuntu.
