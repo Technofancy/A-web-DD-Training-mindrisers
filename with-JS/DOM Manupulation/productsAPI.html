@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        #products-list {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Shop Here</h1>
+    <h2>Products</h2>
+
+    <ul id="products-list">
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</body>
+
+<script>
+    let productsList = [];
+
+    axios
+        .get("https://dummyjson.com/products")
+        .then(res => {
+            productsList = res.data.products;
+            console.log(res.data.products);
+
+            let output = "";
+            productsList.forEach(el => {
+                output += `<li>${el.title}</li> <img src="${el.thumbnail}" class="thumbnail">`
+            })
+
+            document.getElementById("products-list").innerHTML = output;
+        })
+
+        .catch((err) => {
+            document.getElementById("products-list".innerHTML = "Please try again later.")
+        })
+
+</script>
+
+</html>

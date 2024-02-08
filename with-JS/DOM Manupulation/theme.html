@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .Dark {
+            background-color: #333;
+            color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body id="body" class="">
+    <button id="themeBtn" onclick="themeMode()">Dark</button>
+    <!-- <button onclick="toLightMode()">Light</button> -->
+
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam corporis exercitationem veritatis, mollitia optio
+        pariatur odio fugiat repellendus tenetur incidunt aliquid beatae ipsa recusandae quod reiciendis repellat autem
+        officia eaque quisquam sequi. Mollitia deserunt commodi ea ut, ducimus molestias nostrum rerum labore, optio
+        sunt quia pariatur sed? Accusantium totam, aliquid et reiciendis quia recusandae, ratione ipsa itaque, assumenda
+        minus ea aliquam? Rerum a totam, architecto necessitatibus, distinctio adipisci praesentium possimus quos sit
+        nobis ex assumenda. Illum soluta adipisci, est unde sint harum reiciendis omnis iusto ex repudiandae assumenda!
+        Eaque necessitatibus nemo est veritatis tempora sapiente rerum recusandae earum doloremque dolor.</p>
+
+    <script>
+
+        function themeMode() {
+            document.getElementById("body").classList.toggle("Dark");
+        }
+
+        /* function toLightMode() {
+            document.getElementById("body").classList.remove("Dark");
+        } */
+
+    </script>
+
+    <!-- code to do this with single toggle button -->
+
+</body>
+
+</html>

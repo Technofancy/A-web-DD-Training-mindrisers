@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <form onsubmit="createTodo(event)">
+        <input id="title" type="text" placeholder="Type here">
+        <button>Add</button>
+    </form>
+
+
+    <ul id="todos-list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+    </ul>
+
+    <script>
+        let todos = []
+
+        function createTodo(e) {
+            e.preventDefault();
+            axios.post("https://todo-api-dom.vercel.app/api/todos/", {
+                title: document.getElementById("title").value
+            })
+                .then((res) => {
+                    fetchTodos();
+                });
+        }
+
+
+        function fetchTodos() {
+            axios
+
+                .get("https://todo-api-dom.vercel.app/api/todos/")
+
+                .then((res) => {
+                    console.log(res.data.data)
+                    todos = res.data.data
+
+                    let output = "";
+                    todos.forEach(element => {
+                        output += `<li> ${element.title} <span onclick="toggleStatus('${element.title}')" class="tag">${element.status}</span> <button onclick = "deleteData(data)" >Del</button> </li>`
+                    });
+
+                    document.getElementById("todos-list").innerHTML = output
+                })
+
+                .catch((err) => {
+                    document.getElementById("todos-list".innerHTML = "Please try again later.")
+                })
+        }
+
+        function toggleStatus(_id) {
+            console.log("todo_id", _id);
+            axios.put("https://todo-api-dom.vercel.app/api/todos/" + _id, {
+                status: !todos.find(element => element.id == _id).status
+            })
+                .then(res => {
+                    fetchTodos()
+                })
+        }
+
+        function deleteData(todo) {
+            axios.delete("https://todo-api-dom.vercel.app/api/todos/", todo.splice(index, 1))
+            .then(res => {
+                fetchTodos()
+            })
+        }
+
+        fetchTodos()
+
+    </script>
+
+</body>
+
+</html>
