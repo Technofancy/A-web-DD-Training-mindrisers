@@ -11,8 +11,9 @@
     <style>
         #products-list {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             flex-wrap: wrap;
+            gap: 10px;
         }
 
         .thumbnail {
@@ -28,15 +29,15 @@
     <h2>Products</h2>
 
     <ul id="products-list">
-        <li></li>
-        <li></li>
-        <li></li>
+        <li><img src="" alt=""></li>
+        <li><img src="" alt=""></li>
+        <li><img src="" alt=""></li> 
     </ul>
 
 </body>
 
 <script>
-    let productsList = [];
+    // let productsList = [];
 
     axios
         .get("https://dummyjson.com/products")
@@ -44,16 +45,18 @@
             productsList = res.data.products;
             console.log(res.data.products);
 
-            let output = "";
+            let outputList = "";
             productsList.forEach(el => {
-                output += `<li>${el.title}</li> <img src="${el.thumbnail}" class="thumbnail">`
+                outputList += `<li>${el.title} <img src="${el.thumbnail}" class="thumbnail"> </li>`
             })
+            console.log(outputList);
 
-            document.getElementById("products-list").innerHTML = output;
+            document.getElementById("products-list").innerHTML = outputList;
+
         })
 
         .catch((err) => {
-            document.getElementById("products-list".innerHTML = "Please try again later.")
+            document.getElementById("products-list").innerHTML = "Please try again later."
         })
 
 </script>
