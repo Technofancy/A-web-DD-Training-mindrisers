@@ -1,19 +1,27 @@
-const User = require("../model/User");
+const Product = require("../model/Product");
 
-/* 
-     1. client side validation 
-     2. server side 
-     3. database side 
-*/
-const signup = async (req, res, next) => {
-  try {
-    let user = await User.createOld(req.body);
-    res.send(user);
-  } catch (err) {
-    next(err);
-  }
+const fetchProducts = async (req, res) => {
+  let products = await Product.find();
+  res.send(products);
 };
 
+const storeProduct = async (req, res) => {
+  let product = await Product.create({ title: "watch", price: 1000 });
+  res.send(product);
+};
+
+const updateProduct = async (req, res) => {
+  res.send(`${req.params._id} product updated`);
+};
+
+const deleteProduct = async (req, res) => {
+  res.send("product deleted");
+};
+
+/* named exports */
 module.exports = {
-  signup,
+  fetchProducts: fetchProducts,
+  storeProduct,
+  updateProduct,
+  deleteProduct,
 };
