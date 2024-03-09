@@ -10,14 +10,19 @@ const UserSchema = new Schema({
   email: {
     type: String,
     required: true,
+    /* custom validation  -- check email here.. */
   },
   phone: Number,
   password: {
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    enum: ["buyer", "seller"],
+    required: true,
+  },
 });
-
 
 const User = mongoose.model("User", UserSchema);
 
