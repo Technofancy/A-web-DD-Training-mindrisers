@@ -5,7 +5,7 @@ var jwt = require("jsonwebtoken");
 
 /* 
      1. client side validation 
-     2. server side 
+     2. server side ( joi validation) 
      3. database side 
 */
 
@@ -13,9 +13,10 @@ const signupValidationSchema = Joi.object({
   name: Joi.string().min(3).max(30).required(),
   email: Joi.string().email().required(),
   password: Joi.string()
-    .min(8)
-    .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-    .required(),
+  .min(8)
+  .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
+  .required(),
+  role: Joi.string().valid("buyer","seller").required(),
 });
 
 const signup = async (req, res, next) => {
@@ -36,14 +37,6 @@ const signup = async (req, res, next) => {
     });
   }
 
-  /* email validation  */
-  let user = await User.findOne({ email: req.body.email });
-  if (user) {
-    return res.status(400).send({
-      msg: "validatio error",
-      errors: [{ field: "email", msg: "already used" }],
-    });
-  }
 
   try {
     let hashed = await bcrypt.hash(req.body.password, 10);
@@ -66,7 +59,7 @@ const signup = async (req, res, next) => {
 const login = async (req, res) => {
   /* server side validation for login  */
 
-  let user = await User.findOne({ email: req.body.email }); // null
+  let user = await User.findOne({ email: req.body.email }).select('+password'); // null
 
   if (user) {
     let matched = await bcrypt.compare(req.body.password, user.password);
